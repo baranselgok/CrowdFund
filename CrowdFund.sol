@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.13; //solidity version
 
 interface IERC20 {
     function transfer(address, uint) external returns (bool);
@@ -11,8 +11,8 @@ interface IERC20 {
     ) external returns (bool);
 }
 
-contract CrowdFund {
-    event Launch(
+contract CrowdFund {  // a crowdfunding contract is created.
+    event Launch( // launch detailes are defined with the related info. 
         uint id,
         address indexed creator,
         uint goal,
@@ -66,7 +66,7 @@ contract CrowdFund {
         emit Launch(count, msg.sender, _goal, _startAt, _endAt);
     }
 
-    function cancel(uint _id) external {
+    function cancel(uint _id) external { // cancel function
         Campaign memory campaign = campaigns[_id];
         require(campaign.creator == msg.sender, "not creator");
         require(block.timestamp < campaign.startAt, "started");
